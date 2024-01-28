@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import tw from 'tailwind-react-native-classnames'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import BookCard from '../components/BookCard'
+import { useNavigation } from '@react-navigation/native'
 
 const data = [
   {
@@ -20,6 +21,7 @@ const data = [
 ]
 
 const InfoScreen = () => {
+  const navigation = useNavigation()
   const location = useSelector(selectLocation)
   const mood = useSelector(selectMood) 
   const season = useSelector(selectSeason)
@@ -40,6 +42,7 @@ const InfoScreen = () => {
           renderItem = {({ item }) => (
             <TouchableOpacity
              style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-5 w-40 h-full`}
+             onPress={() => navigation.navigate('BookScreen')}
             >
               <View>
                 <Text style={tw`mx-auto`}>{item.title}</Text>

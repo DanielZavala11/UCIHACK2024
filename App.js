@@ -8,6 +8,7 @@ import 'react-native-gesture-handler'
 import { store } from './store'
 import { Provider } from 'react-redux';
 import InfoScreen from './screens/InfoScreen';
+import BookScreen from './screens/BookScreen';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -26,6 +27,11 @@ export default function App() {
          component={InfoScreen}
          options={{headerShown: false,}}
         />
+        <Stack.Screen
+         name='BookScreen'
+         component={BookScreen}
+         options={{headerShown: false,}}
+         />
     </Stack.Navigator>
     </SafeAreaProvider>
     </NavigationContainer>
