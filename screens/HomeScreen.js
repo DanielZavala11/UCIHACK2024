@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, SafeAreaView, Image, Button, Alert, TextInput } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, form } from 'react'
 import tw from 'tailwind-react-native-classnames'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocation, setMood, setSeason } from '../slices/navSlice'
 import { useNavigation } from '@react-navigation/native'
+import { selectLocation, selectMood, selectSeason } from '../slices/navSlice'
 
 const HomeScreen = () => {
   const dispatch = useDispatch()
@@ -23,6 +24,17 @@ const HomeScreen = () => {
            console.log(data.current.cloud)
            dispatch(setMsg(data.current.cloud)) 
         })*/
+    let value = locationTxt
+    fetch('http://127.0.0.1:5000/weather-test', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstParam: value,
+      }),
+    })
     dispatch(setLocation(locationTxt))
     dispatch(setMood(moodTxt))
     dispatch(setSeason(seasonTxt))
@@ -36,8 +48,11 @@ const HomeScreen = () => {
         <Text style={tw`mx-auto mt-5`}>How may I help you?</Text>
         
         {/*<Text id='display'>{useSelector(selectMsg)}</Text>*/}
-        <Text style={tw`mx-auto mt-5`}>Enter Location:</Text>
-        <TextInput id='loc' style={tw`border-black border-4 w-3/6 mx-auto`} onChangeText={newText => setLocationTxt(newText)}/>
+        <View method="POST">
+          <Text style={tw`mx-auto mt-5`}>Enter Location:</Text>
+          <TextInput name='data' style={tw`border-black border-4 w-3/6 mx-auto`} onChangeText={newText => setLocationTxt(newText)}/>
+        </View>
+
         <Text style={tw`mx-auto mt-5`}>Enter Mood:</Text>
         <TextInput id='loc' style={tw`border-black border-4 w-3/6 mx-auto`} onChangeText={newText => setMoodTxt(newText)}/>
         <Text style={tw`mx-auto mt-5`}>Enter Season:</Text>
@@ -47,6 +62,7 @@ const HomeScreen = () => {
           onPress={()=>{nextScreen()}}
           style={tw`text-red-800 border-black border-4`}
         />
+        <TextInput id='output'></TextInput>
       </View>
     </SafeAreaView>
   )

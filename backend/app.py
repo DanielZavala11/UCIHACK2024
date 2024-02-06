@@ -27,11 +27,13 @@ def yelp_default_test():
 
     return jsonify(response.json())
 
-@app.route('/weather-test')
+@app.route('/weather-test', methods=['POST', 'GET'])
 def weather_test():
-
-
-    url = f"http://api.weatherapi.com/v1/forecast.json?key={WEATHER_AUTH_TOKEN}&q=London"
+    location = request.get_json().get('firstParam') if request.get_json() else 'Tokyo'
+    print('Location selected:', location)
+    
+    
+    url = f"http://api.weatherapi.com/v1/forecast.json?key={WEATHER_AUTH_TOKEN}&q={location}"
     
     response =  requests.request("GET", url)
 
