@@ -17,7 +17,12 @@ const data = [
     id:  "2",
     title: "Eminences Grises",
     author: "Faligot"
-  }
+  },
+  {
+    id: "3",
+    title: "Count of Monte Cristo",
+    author: "Dumas"
+  },
 ]
 
 const InfoScreen = () => {
@@ -34,17 +39,17 @@ const InfoScreen = () => {
       <Text style={tw`p-2.5 border-black border-8 bg-red-300 text-center`}>{location}</Text>
       <Text style={tw`p-2.5 border-black border-8 bg-red-300 text-center`}>{mood}</Text>
       <Text style={tw`p-2.5 border-black border-8 bg-red-300 text-center`}>{season}</Text>
-      <View>
+      <View style={tw`h-3/6`}>
        <FlatList 
           data={data} 
           horizontal
           keyExtractor={(item) => item.id}
           renderItem = {({ item }) => (
             <TouchableOpacity
-             style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-5 w-40 h-full`}
-             onPress={() => navigation.navigate('BookScreen')}
+             style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-5 w-40 h-3/6 rounded-lg`}
+             onPress={(data) => navigation.navigate('BookScreen')}
             >
-              <View>
+              <View style={tw`rounded-lg`}>
                 <Text style={tw`mx-auto`}>{item.title}</Text>
                 <Text style={tw`mx-auto`}>{item.author}</Text>
               </View>

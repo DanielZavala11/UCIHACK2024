@@ -2,7 +2,8 @@ import { View, Text, SafeAreaView } from 'react-native'
 import React from 'react'
 import tw from 'tailwind-react-native-classnames'
 
-const BookScreen = () => {
+const BookScreen = (data) => {
+  console.log(data)
   return (
     <SafeAreaView style={tw`bg-red-400 h-full`}>
     <View style={tw`m-auto bg-opacity-5`}>

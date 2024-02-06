@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, Image, Button, Alert, TextInput } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Image, Button, Alert, TextInput, Pressable } from 'react-native'
 import React, { useState, form } from 'react'
 import tw from 'tailwind-react-native-classnames'
 import { useDispatch, useSelector } from 'react-redux'
@@ -57,11 +57,12 @@ const HomeScreen = () => {
         <TextInput id='loc' style={tw`border-black border-4 w-3/6 mx-auto`} onChangeText={newText => setMoodTxt(newText)}/>
         <Text style={tw`mx-auto mt-5`}>Enter Season:</Text>
         <TextInput id='loc' style={tw`border-black border-4 w-3/6 mx-auto`} onChangeText={newText => setSeasonTxt(newText)}/>
-        <Button 
-          title="Press me"
+        <Pressable 
           onPress={()=>{nextScreen()}}
-          style={tw`text-red-800 border-black border-4`}
-        />
+          style={tw`border-blue-400 border-4 w-3/6 mx-auto mt-5 bg-blue-300 rounded`}
+        >
+           <Text style={tw`mx-auto text-white`}>Press me</Text>
+        </Pressable>
         <TextInput id='output'></TextInput>
       </View>
     </SafeAreaView>
