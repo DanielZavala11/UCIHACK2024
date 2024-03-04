@@ -45,7 +45,7 @@ const InfoScreen = () => {
           horizontal
           keyExtractor={(item) => item.id}
           renderItem = {({ item }) => (
-            <TouchableOpacity
+            /*<TouchableOpacity
              style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-5 w-40 h-3/6 rounded-lg`}
              onPress={(data) => navigation.navigate('BookScreen')}
             >
@@ -54,6 +54,8 @@ const InfoScreen = () => {
                 <Text style={tw`mx-auto`}>{item.author}</Text>
               </View>
             </TouchableOpacity>
+            */
+            <BookCard title={item.title} author={item.author}/>
           )}
        ></FlatList>
       </View>
